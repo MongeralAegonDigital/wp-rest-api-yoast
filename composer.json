@@ -1,0 +1,12 @@
+{
+    "name": "MongeralAegonDigital/wp-rest-api-yoast",
+    "authors": [
+        {
+            "name": "Alan Gomes",
+            "email": "alanhr2@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {"MAD\\": "app/"}
+    }
+}
