@@ -31,7 +31,8 @@ class YoastSiteMapController
             $count_posts = wp_count_posts($postType);
             $count_posts = $count_posts->publish;
             if ($count_posts !== 0) {
-                foreach (get_posts(['post_type' => $postType, 'post_status' => 'publish']) as $post) {
+                $result = new \Wp_Query(['post_type' => $postType, 'post_status' => 'publish']);
+                foreach ($result->posts as $post) {
                     $uris[$postType][] = $post->post_name;
                 }
             }
