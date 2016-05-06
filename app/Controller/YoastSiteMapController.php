@@ -33,7 +33,16 @@ class YoastSiteMapController
             if ($count_posts !== 0) {
                 $result = new \Wp_Query(['post_type' => $postType, 'post_status' => 'publish']);
                 foreach ($result->posts as $post) {
-                    $uris[$postType][] = $post->post_name;
+                    $attachments = get_children(array('post_parent' => $post->ID));
+                    $images = array();
+                    foreach ($attachments as $image) {
+                        $images[] = array('url' => $image->guid, 'title' => $image->post_title);
+                    }
+                    $uris[$postType][] = array(
+                      'uri' => $post->post_name,
+                      'date' => $post->post_date,
+                      'images' => $images,
+                    );
                 }
             }
         }
