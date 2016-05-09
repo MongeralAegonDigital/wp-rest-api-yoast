@@ -31,7 +31,7 @@ class YoastSiteMapController
             $count_posts = wp_count_posts($postType);
             $count_posts = $count_posts->publish;
             if ($count_posts !== 0) {
-                $result = new \Wp_Query(['post_type' => $postType, 'post_status' => 'publish']);
+                $result = new \Wp_Query(['post_type' => $postType, 'post_status' => 'publish', 'posts_per_page' => '-1']);
                 foreach ($result->posts as $post) {
                     $attachments = get_children(array('post_parent' => $post->ID));
                     $images = array();
